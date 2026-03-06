@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Claude code y skills
+
+CLAUDE.md
+skills-*.json
+.agent
+.agents
+.claude

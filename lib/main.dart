@@ -209,7 +209,7 @@ class _INEScannerScreenState extends State<INEScannerScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 8),
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: _isLoading ? null : _scanINEFromGallery,
@@ -218,6 +218,25 @@ class _INEScannerScreenState extends State<INEScannerScreen> {
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                IconButton.outlined(
+                  onPressed: _isLoading
+                      ? null
+                      : () {
+                          setState(() {
+                            _nameController.clear();
+                            _addressController.clear();
+                            _postalCodeController.clear();
+                            _selectedImage = null;
+                            _errorMessage = null;
+                          });
+                        },
+                  icon: const Icon(Icons.delete_outline),
+                  tooltip: 'Limpiar',
+                  style: IconButton.styleFrom(
+                    padding: const EdgeInsets.all(14),
                   ),
                 ),
               ],
@@ -269,7 +288,7 @@ class _INEScannerScreenState extends State<INEScannerScreen> {
             const SizedBox(height: 16),
             TextField(
               controller: _addressController,
-              maxLines: 2,
+              maxLines: 3,
               decoration: InputDecoration(
                 labelText: 'Domicilio',
                 prefixIcon: const Icon(Icons.home),
@@ -298,6 +317,12 @@ class _INEScannerScreenState extends State<INEScannerScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Datos guardados')),
                   );
+                  setState(() {
+                    _nameController.clear();
+                    _addressController.clear();
+                    _postalCodeController.clear();
+                    _selectedImage = null;
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
