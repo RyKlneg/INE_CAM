@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'incidencias_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,8 +24,34 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(flex: 3),
-            // Optional logo or icon can go here
+            const Spacer(flex: 2),
+            const Icon(
+              Icons.admin_panel_settings_rounded,
+              size: 80,
+              color: Colors.white,
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              '¡Bienvenido!',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                'Selecciona la sección que deseas utilizar para comenzar el registro de forma segura.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const SizedBox(height: 48),
             _buildHomeButton(
               context,
               icon: Icons.assignment_ind_outlined,
@@ -39,12 +66,12 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             _buildHomeButton(
               context,
-              icon: Icons.people_alt_outlined,
-              label: 'POBLACIÓN',
+              icon: Icons.warning_amber_rounded,
+              label: 'INCIDENCIAS',
               onPressed: () {
-                // Implement later
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Módulo de Población en desarrollo')),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const IncidenciasScreen()),
                 );
               },
             ),
@@ -64,19 +91,19 @@ class HomeScreen extends StatelessWidget {
       width: 300,
       height: 65,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: ElevatedButton(
+      child: OutlinedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          elevation: 4,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1.5),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(35),
+            borderRadius: BorderRadius.circular(12),
           ),
+          backgroundColor: Colors.transparent,
         ),
         child: Row(
           children: [
-            Icon(icon, size: 30, color: Colors.black),
+            Icon(icon, size: 30, color: Colors.white),
             const SizedBox(width: 15),
             Expanded(
               child: Text(
